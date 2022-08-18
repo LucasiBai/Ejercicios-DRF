@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from todoapp.api.api import TodoList, TodoUncompletedList, TodoDetail
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("api/todo", TodoList.as_view(), name="todo_api"),
+    path("api/todo/<int:pk>", TodoDetail.as_view(), name="todo_api"),
+    path(
+        "api/todo/uncompleted/",
+        TodoUncompletedList.as_view(),
+        name="todo_api_uncompleted",
+    ),
 ]
