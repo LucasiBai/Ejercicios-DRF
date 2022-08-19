@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from consultora_app.api.api import ProgrammerLanguageListView, ProgrammerDetailView
+from consultora_app.api.api import (
+    ProgrammerListView,
+    ProgrammerLanguageListView,
+    ProgrammerDetailView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/programmers/", ProgrammerListView.as_view()),
     path("api/programmers/<slug:lg>/", ProgrammerLanguageListView.as_view()),
     path("api/programmers/<int:pk>", ProgrammerDetailView.as_view()),
 ]
