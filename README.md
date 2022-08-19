@@ -23,15 +23,11 @@ El sistema esta desarrollado en DJANGO y tienen definido el siguiente modelo
 
 ~~~
   LANG_CHOICES = (
-
+  ("js", "Javascript"),
   ('python', 'Python'),
-
   ('c', 'C'),
-
   ('java', 'Java'),
-
   ('php', 'PHP')
-
   )
 
   class Programmer(models.Model):
