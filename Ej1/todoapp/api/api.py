@@ -21,6 +21,15 @@ class TodoDetail(generics.RetrieveAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
+    def put(self, request, pk):
+        task = Todo.objects.filter(id=pk).first()
+        serializer = TodoSerializer(task, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class TodoUncompletedList(APIView):
     def get(self, request):
