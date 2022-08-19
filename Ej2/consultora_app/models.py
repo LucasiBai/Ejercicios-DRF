@@ -11,8 +11,10 @@ LANG_CHOICES = (
 
 
 class Programmer(models.Model):
-    nick = models.CharField(max_length=16)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.EmailField()
-    program_lang = models.CharField(max_length=32, choices=LANG_CHOICES)
+    nick = models.CharField(max_length=16, null=False, blank=True)
+    first_name = models.CharField(max_length=255, null=False, blank=True)
+    last_name = models.CharField(max_length=255, null=False, blank=True)
+    email = models.EmailField(null=False, blank=True)
+    program_lang = models.CharField(
+        max_length=32, choices=LANG_CHOICES, null=False, blank=True
+    )
