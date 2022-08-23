@@ -49,3 +49,52 @@ Se requiere desarrollar una API con las siguiente funcionalidades:
 Dado un lenguaje determinado, obtener todos los programadores
 Crear varios programadores a la vez
 Ver los detalles de un programador
+
+## Ejercicio 3
+
+Se esta contruyendo un sistema de ecommerce en django. Una de las aplicaciones que esta desarrollando el equipo el carrito de compras. Para tal fin se definio el siguiente modelo:
+
+~~~
+class CartItem(models.Model):
+
+ product_name = models.CharField(max_length=200)
+
+ product_price = models.FloatField()
+
+ product_quantity = models.PositiveIntegerField()
+~~~
+Se pide crear una API con las operaciones estandar para un item del carrito, usando ViewSets y Routers
+
+## Ejercicio 4
+
+Se desarrollo el siguiente código para gestionar operaciones CRUD de una base de datos de héroes.
+
+Modelo
+~~~
+class HeroSerializer(serializers.HyperlinkedModelSerializer):
+
+ class Meta:
+
+ model = Hero
+
+ fields = ('name', 'alias')
+~~~
+Vista
+~~~
+class HeroViewSet(viewsets.ModelViewSet):
+
+ queryset = Hero.objects.all().order_by('name')
+
+ serializer_class = HeroSerializer
+
+URL
+
+urlpatterns = [
+
+ path('admin/', admin.site.urls),
+
+ path('', include('myapi.urls')),
+
+ ]
+~~~
+Para utilizar esta API se requiere establecer permisos donde solo los usuarios registrados puedan utilizarla, adicionalmente solo se puede permitir hacer un update al usuario que lo creo.
